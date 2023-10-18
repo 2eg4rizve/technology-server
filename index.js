@@ -57,24 +57,29 @@ async function run() {
     });
 
 
-    //update one
+    // update one
     app.put("/products/:id", async (req, res) => {
       const id = req.params.id;
+      
+      console.log("update id : ",id);
+
       const filter = { _id: new ObjectId(id) };
 
       const options = { upsert: true };
 
       const updatedProduct = req.body;
 
+      // const newProduct = { UserName, userEmail, userEmail, productName, bandName, bandName, price, shortDescription, rating }
+
       const product = {
         $set: {
-          name: updatedProduct.name,
-          quantity: updatedProduct.quantity,
-          supplier: updatedProduct.supplier,
-          taste: updatedProduct.taste,
-          category: updatedProduct.category,
-          detail: updatedProduct.detail,
-          photo: updatedProduct.photo,
+          UserName: updatedProduct. UserName,
+          userEmail: updatedProduct.userEmail,
+          userEmail: updatedProduct.userEmail,
+          productName: updatedProduct.productName,
+          bandName: updatedProduct.bandName,
+          shortDescription: updatedProduct.shortDescription,
+          rating: updatedProduct.rating,
         },
       };
 
