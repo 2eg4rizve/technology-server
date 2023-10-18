@@ -30,6 +30,7 @@ async function run() {
     await client.connect();
 
     const productsCollection = client.db("technologyDB").collection("products");
+    const cartsCollection = client.db("technologyDB").collection("carts");
 
     //post single
     app.post("/products", async (req, res) => {
@@ -56,12 +57,11 @@ async function run() {
       res.send(result);
     });
 
-
     // update one
     app.put("/products/:id", async (req, res) => {
       const id = req.params.id;
-      
-      console.log("update id : ",id);
+
+      console.log("update id : ", id);
 
       const filter = { _id: new ObjectId(id) };
 
@@ -69,21 +69,43 @@ async function run() {
 
       const updatedProduct = req.body;
 
-      // const newProduct = { UserName, userEmail, userEmail, productName, bandName, bandName, price, shortDescription, rating }
+      // const newProduct = { UserName, userEmail, productName, bandName, bandName, price, shortDescription, rating }
 
       const product = {
         $set: {
-          UserName: updatedProduct. UserName,
+          UserName: updatedProduct.UserName,
           userEmail: updatedProduct.userEmail,
           userEmail: updatedProduct.userEmail,
           productName: updatedProduct.productName,
           bandName: updatedProduct.bandName,
+          price: updatedProduct.price,
           shortDescription: updatedProduct.shortDescription,
           rating: updatedProduct.rating,
         },
       };
 
-      const result = await productsCollection.updateOne(filter, product, options);
+      const result = await productsCollection.updateOne(
+        filter,
+        product,
+        options
+      );
+      res.send(result);
+    });
+
+    //my post single
+    app.post("/carts", async (req, res) => {
+      const myNewProduct = req.body;
+      console.log(myNewProduct);
+
+      const result = await cartsCollection.insertOne(myNewProduct);
+      res.send(result);
+    });
+
+     //my cart get all
+     app.get("/carts", async (req, res) => {
+      const cursor = cartsCollection.find();
+      const result = await cursor.toArray();
+
       res.send(result);
     });
 
