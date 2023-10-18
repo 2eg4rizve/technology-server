@@ -69,7 +69,7 @@ async function run() {
 
       const updatedProduct = req.body;
 
-      // const newProduct = { UserName, userEmail, productName, bandName, bandName, price, shortDescription, rating }
+      //const newProduct = { UserName, userEmail, photo, productName, bandName, type, price, shortDescription, rating }
 
       const product = {
         $set: {
@@ -78,6 +78,7 @@ async function run() {
           userEmail: updatedProduct.userEmail,
           productName: updatedProduct.productName,
           bandName: updatedProduct.bandName,
+          type: updatedProduct.type,
           price: updatedProduct.price,
           shortDescription: updatedProduct.shortDescription,
           rating: updatedProduct.rating,
