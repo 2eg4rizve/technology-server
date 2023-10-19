@@ -133,7 +133,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send(" technology server is running");
+  res.send("my technology server is running");
 });
 
 app.listen(port, () => {
