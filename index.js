@@ -75,7 +75,7 @@ async function run() {
         $set: {
           UserName: updatedProduct.UserName,
           userEmail: updatedProduct.userEmail,
-          userEmail: updatedProduct.userEmail,
+          photo: updatedProduct.photo,
           productName: updatedProduct.productName,
           bandName: updatedProduct.bandName,
           type: updatedProduct.type,
